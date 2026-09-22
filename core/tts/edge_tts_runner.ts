@@ -1,4 +1,3 @@
-import { EdgeTTS } from "edge-tts-universal";
 import * as fs from "node:fs";
 import * as path from "node:path";
 import { normalizePronunciation } from "./normalizer";

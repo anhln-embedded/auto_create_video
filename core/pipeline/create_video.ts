@@ -31,7 +31,7 @@ export async function createNewVideo(options: {
   fs.mkdirSync(scenesDir, { recursive: true });
 
   // 1. Synthesize audio
-  const manifest = await synthesizeVoiceover({
+  await synthesizeVoiceover({
     topic,
     scenes,
     engine,
