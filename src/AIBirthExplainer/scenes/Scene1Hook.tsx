@@ -11,6 +11,7 @@ import {
 } from "remotion";
 import { BrandHeader, SubtitleBox } from "../../components/embedded";
 import { audioManifest } from "../audioData";
+import { subtitlesData } from "../subtitlesData";
 
 export const Scene1Hook: React.FC = () => {
   const frame = useCurrentFrame();
@@ -123,8 +124,9 @@ export const Scene1Hook: React.FC = () => {
         </div>
       </div>
 
-      {/* LAYER 4: High-Retention Kinetic Subtitles (Positioned above TikTok UI Danger Zone) */}
+      {/* LAYER 4: High-Retention Kinetic Subtitles (100% Frame-Perfect WordBoundary) */}
       <SubtitleBox
+        chunks={subtitlesData[0].chunks}
         text={audioManifest.scenes[0].text}
         durationInFrames={audioManifest.scenes[0].durationInFrames}
         bottom="380px"

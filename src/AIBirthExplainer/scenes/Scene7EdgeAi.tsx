@@ -11,6 +11,7 @@ import {
 } from "remotion";
 import { BrandHeader, SubtitleBox } from "../../components/embedded";
 import { audioManifest } from "../audioData";
+import { subtitlesData } from "../subtitlesData";
 
 export const Scene7EdgeAi: React.FC = () => {
   const frame = useCurrentFrame();
@@ -180,11 +181,12 @@ export const Scene7EdgeAi: React.FC = () => {
         </div>
       </div>
 
-      {/* LAYER 4: Kinetic Karaoke Subtitles (bottom=380px, avoiding TikTok UI danger zone) */}
+      {/* LAYER 4: Kinetic Karaoke Subtitles (100% Frame-Perfect WordBoundary) */}
       <SubtitleBox
+        chunks={subtitlesData[6].chunks}
         text={audioManifest.scenes[6].text}
+        durationInFrames={audioManifest.scenes[6].durationInFrames}
         bottom="380px"
-        fontSize="text-5xl font-black"
         highlightColor="text-cyan-400"
       />
 

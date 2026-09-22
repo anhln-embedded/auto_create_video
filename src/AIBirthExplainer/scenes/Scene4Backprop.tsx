@@ -11,6 +11,7 @@ import {
 } from "remotion";
 import { BrandHeader, SubtitleBox } from "../../components/embedded";
 import { audioManifest } from "../audioData";
+import { subtitlesData } from "../subtitlesData";
 
 export const Scene4Backprop: React.FC = () => {
   const frame = useCurrentFrame();
@@ -147,8 +148,9 @@ export const Scene4Backprop: React.FC = () => {
         </div>
       </div>
 
-      {/* LAYER 4: High-Retention Kinetic Subtitles */}
+      {/* LAYER 4: High-Retention Kinetic Subtitles (100% Frame-Perfect WordBoundary) */}
       <SubtitleBox
+        chunks={subtitlesData[3].chunks}
         text={audioManifest.scenes[3].text}
         durationInFrames={audioManifest.scenes[3].durationInFrames}
         bottom="380px"
