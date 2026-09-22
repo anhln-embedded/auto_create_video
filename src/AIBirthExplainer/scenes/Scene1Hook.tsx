@@ -2,6 +2,7 @@ import React from "react";
 import {
   AbsoluteFill,
   Audio,
+  Img,
   interpolate,
   spring,
   staticFile,
@@ -23,91 +24,116 @@ export const Scene1Hook: React.FC = () => {
     config: { damping: 13 },
   });
 
-  const cardOpacity = interpolate(frame, [8, 20], [0, 1], {
+  const cardOpacity = interpolate(frame, [8, 22], [0, 1], {
     extrapolateLeft: "clamp",
     extrapolateRight: "clamp",
   });
 
-  const pulse = Math.sin(frame / 6) * 0.05 + 1.0;
+  const imgScale = interpolate(frame, [0, audioManifest.scenes[0].durationInFrames], [1.0, 1.1], {
+    extrapolateRight: "clamp",
+  });
 
   return (
-    <AbsoluteFill className="flex flex-col items-center justify-start pt-48 px-6 text-white bg-[#07080a]">
+    <AbsoluteFill className="text-white bg-[#07080a] overflow-hidden">
       <Audio src={staticFile(audioManifest.scenes[0].audioPath)} />
-      <BrandHeader channelName="Ngoc Einstein" websiteTag="EMBEDDED-AIOT.COM" top="130px" />
 
-      {/* Episode Tag */}
-      <div
-        style={{ transform: `translateY(${titleSlide}px)` }}
-        className="mt-2 flex items-center gap-3.5 rounded-2xl border-2 border-cyan-500/60 bg-slate-900/95 px-8 py-3.5 backdrop-blur-xl shadow-[0_0_35px_rgba(6,182,212,0.4)]"
-      >
-        <span className="text-3xl">🧠</span>
-        <span className="font-heading text-xl md:text-2xl font-black tracking-wider text-cyan-300 uppercase">
-          LỊCH SỬ CÔNG NGHỆ: SỰ THẬT VỀ AI
-        </span>
+      {/* Real Background Hero Art: Ambient Depth */}
+      <div className="absolute inset-0 z-0 opacity-30 overflow-hidden">
+        <Img
+          src={staticFile("images/ai_birth/ai_birth_hook_art.jpg")}
+          className="w-full h-full object-cover"
+          style={{ transform: `scale(${imgScale})` }}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#07080a] via-[#07080a]/80 to-[#07080a]/90" />
       </div>
 
-      {/* Main Hook Card */}
-      <div
-        style={{ opacity: cardOpacity }}
-        className="mt-6 w-full max-w-[1020px] rounded-3xl border-2 border-cyan-500/50 bg-slate-950/95 p-8 backdrop-blur-2xl shadow-2xl flex flex-col gap-6"
-      >
-        {/* Title */}
-        <div className="flex items-center justify-between border-b border-cyan-500/30 pb-4">
-          <div className="flex items-center gap-3">
-            <span className="text-5xl" style={{ transform: `scale(${pulse})` }}>🤖</span>
-            <div>
-              <h3 className="font-heading text-3xl font-black text-white">
-                HÓA RA AI ĐƯỢC RA ĐỜI NHƯ THẾ NÀO?
-              </h3>
-              <p className="text-base font-semibold text-cyan-400">
-                Phép màu tương lai hay chỉ là toán học 70 năm trước?
-              </p>
-            </div>
-          </div>
-          <span className="rounded-xl bg-cyan-950/80 px-4 py-2 font-mono text-sm font-bold text-cyan-300 border border-cyan-500/30">
-            1950 ➔ 2026
+      {/* Top Header & Episode Tag */}
+      <div className="absolute top-10 inset-x-0 flex flex-col items-center z-20">
+        <BrandHeader channelName="Ngoc Einstein" websiteTag="EMBEDDED-AIOT.COM" top="0px" />
+        <div
+          style={{ transform: `translateY(${titleSlide}px)` }}
+          className="mt-20 flex items-center gap-4 rounded-2xl border-2 border-cyan-500/60 bg-slate-900/95 px-8 py-3.5 backdrop-blur-xl shadow-[0_0_40px_rgba(6,182,212,0.4)]"
+        >
+          <span className="text-4xl">🧠</span>
+          <span className="font-heading text-2xl md:text-3xl font-black tracking-wider text-cyan-300 uppercase">
+            LỊCH SỬ CÔNG NGHỆ: BẢN CHẤT CỦA AI
           </span>
         </div>
+      </div>
 
-        {/* Visual Comparison: Illusion vs Reality */}
-        <div className="flex flex-col gap-4">
-          {/* Card 1: Illusion */}
-          <div className="rounded-2xl border-2 border-rose-500/40 bg-rose-950/30 p-5 flex items-center justify-between">
-            <div className="flex items-center gap-4">
-              <span className="text-4xl">❌</span>
-              <div>
-                <div className="text-lg font-bold text-rose-300 uppercase">ẢO TƯỞNG PHỔ BIẾN</div>
-                <div className="text-xl font-semibold text-slate-200">
-                  AI là siêu trí tuệ ngoài hành tinh mới phát minh
-                </div>
-              </div>
+      {/* Main Full-Height Content Area: y=230px to y=1690px */}
+      <div
+        style={{ opacity: cardOpacity }}
+        className="absolute top-[230px] bottom-[225px] inset-x-7 flex flex-col justify-between z-10"
+      >
+        {/* Card 1: Hero Cinematic Card (Height ~600px) */}
+        <div className="rounded-3xl border-2 border-cyan-500/60 bg-slate-950/90 p-8 backdrop-blur-2xl shadow-2xl flex flex-col justify-between">
+          <div className="relative w-full h-72 rounded-2xl overflow-hidden border-2 border-cyan-400/50 shadow-xl">
+            <Img
+              src={staticFile("images/ai_birth/ai_birth_hook_art.jpg")}
+              className="w-full h-full object-cover"
+              style={{ transform: `scale(${imgScale})` }}
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/40 to-transparent" />
+            <div className="absolute bottom-4 left-5 right-5 flex items-center justify-between">
+              <span className="text-sm font-mono font-bold text-cyan-300 bg-cyan-950/90 border border-cyan-500/40 px-3.5 py-1.5 rounded-xl">
+                1950 ➔ 2026: 70+ NĂM LỊCH SỬ
+              </span>
+              <span className="text-sm font-mono text-amber-300 bg-amber-950/90 border border-amber-500/40 px-3.5 py-1.5 rounded-xl font-bold">
+                TÀI LIỆU ĐẶC BIỆT
+              </span>
             </div>
-            <span className="text-xs font-mono text-rose-400 bg-rose-950/80 px-3 py-1.5 rounded-lg border border-rose-500/30">
-              HOANG ĐƯỜNG
+          </div>
+
+          <div className="mt-5">
+            <h2 className="text-4xl font-black text-white leading-tight">
+              HÓA RA AI ĐƯỢC RA ĐỜI NHƯ THẾ NÀO?
+            </h2>
+            <p className="text-2xl font-bold text-cyan-300 mt-2">
+              Phép màu công nghệ siêu nhiên hay toán học từ thời ông bà chúng ta?
+            </p>
+          </div>
+        </div>
+
+        {/* Card 2: Myth vs Fact Grid (Height ~520px) */}
+        <div className="grid grid-cols-2 gap-5">
+          {/* Left: Myth */}
+          <div className="rounded-3xl border-2 border-rose-500/50 bg-rose-950/40 p-7 flex flex-col justify-between shadow-xl">
+            <div className="flex items-center gap-3">
+              <span className="text-3xl">❌</span>
+              <span className="text-base font-mono font-black text-rose-300 uppercase tracking-wider">
+                ẢO TƯỞNG PHỔ BIẾN
+              </span>
+            </div>
+            <div className="text-2xl font-bold text-slate-100 my-3 leading-snug">
+              AI là phép thuật siêu việt mới sinh ra vài năm gần đây!
+            </div>
+            <span className="text-sm font-mono text-rose-400 font-bold bg-rose-950 px-3.5 py-1.5 rounded-xl border border-rose-500/30 self-start">
+              SAI LẦM 99% NGƯỜI DÙNG
             </span>
           </div>
 
-          {/* Card 2: Truth */}
-          <div className="rounded-2xl border-2 border-emerald-500/50 bg-emerald-950/40 p-5 flex items-center justify-between shadow-[0_0_20px_rgba(16,185,129,0.2)]">
-            <div className="flex items-center gap-4">
-              <span className="text-4xl">💡</span>
-              <div>
-                <div className="text-lg font-bold text-emerald-300 uppercase">SỰ THẬT BẤT NGỜ</div>
-                <div className="text-xl font-semibold text-white">
-                  90% Toán học AI đã có từ thời ông bà chúng ta!
-                </div>
-              </div>
+          {/* Right: Truth */}
+          <div className="rounded-3xl border-2 border-emerald-500/70 bg-emerald-950/40 p-7 flex flex-col justify-between shadow-[0_0_30px_rgba(16,185,129,0.25)]">
+            <div className="flex items-center gap-3">
+              <span className="text-3xl">💡</span>
+              <span className="text-base font-mono font-black text-emerald-300 uppercase tracking-wider">
+                SỰ THẬT KINH NGẠC
+              </span>
             </div>
-            <span className="text-xs font-mono text-emerald-300 bg-emerald-950/80 px-3 py-1.5 rounded-lg border border-emerald-500/40">
-              NHÂN MA TRẬN
+            <div className="text-2xl font-black text-white my-3 leading-snug">
+              90% Toán học cốt lõi đã có từ hơn 70 năm trước!
+            </div>
+            <span className="text-sm font-mono text-emerald-300 font-bold bg-emerald-950 px-3.5 py-1.5 rounded-xl border border-emerald-500/40 self-start">
+              ĐẠI SỐ TUYẾN TÍNH 1950
             </span>
           </div>
         </div>
 
-        {/* Shocking Mystery Box */}
-        <div className="rounded-2xl border border-amber-500/40 bg-amber-950/20 p-5 text-center">
-          <p className="text-xl font-extrabold text-amber-300">
-            ❓ Tại sao suốt 40 năm, AI từng bị coi là cú lừa đảo nghìn tỷ đô?
+        {/* Card 3: Mystery Punchline (Height ~240px) */}
+        <div className="rounded-3xl border-2 border-amber-500/60 bg-amber-950/40 p-7 backdrop-blur-2xl shadow-[0_0_35px_rgba(245,158,11,0.2)] text-center">
+          <p className="text-2xl md:text-3xl font-black text-amber-300 leading-snug">
+            ❓ Vậy tại sao suốt nửa thế kỷ, AI từng bị coi là cú lừa nghìn tỷ đô và chìm vào 2 MÙA ĐÔNG BĂNG GIÁ?
           </p>
         </div>
       </div>
@@ -115,7 +141,7 @@ export const Scene1Hook: React.FC = () => {
       <SubtitleBox
         text={audioManifest.scenes[0].text}
         durationInFrames={audioManifest.scenes[0].durationInFrames}
-        bottom="140px"
+        bottom="80px"
       />
     </AbsoluteFill>
   );
