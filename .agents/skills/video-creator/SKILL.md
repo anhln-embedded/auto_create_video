@@ -78,18 +78,23 @@ Every high-retention technical short video follows this 6-scene formula:
 ## 📐 4. Visual Layout & Remotion Rules (9:16 - 1080x1920)
 
 > [!CRITICAL]
-> **Rule 1: VERTICAL FLOW ONLY (CẤM CHIA ĐÔI CHIỀU RỘNG)**
-> Mobile screens are only 1080px wide. Never use `grid-cols-2` for code or comparisons! Always stack elements vertically from Top-to-Bottom (`flex flex-col gap-4`) so cards utilize the full 1000px width.
+> **Rule 1: THOÁT KHỎI BẪY DASHBOARD - ÁP DỤNG KIẾN TRÚC 4 LỚP CHUYỂN ĐỘNG (4-LAYER MOTION STACK)**
+> - CẤM biến video thành các hộp chữ nhật chứa đoạn văn tĩnh như web dashboard. Người xem lướt video ngắn không đọc chữ dài!
+> - **Layer 1 (Nền)**: Full-Bleed Motion Background phủ kín 100% màn hình (`blur-2xl opacity-40`) + tia sáng Ambient Glow/hạt bụi di chuyển. CẤM để nền đen tĩnh.
+> - **Layer 2 (Hero Visual)**: Ảnh/Video thực tế chiếm 50–70% màn hình ở vị trí trung tâm mắt nhìn (từ `y = 350px` đến `y = 1150px`), phong cách Sticker/Collage phát sáng Neon (`shadow-[0_0_35px]`) + Ken-Burns zoom nhẹ (`scale: 1.0 ➔ 1.08`).
+> - **Layer 3 (Keyword Badges)**: CẤM viết cả câu văn. Chỉ thả các thẻ từ khóa / con số giật gân nảy theo nhịp giọng đọc (`spring() pop-in`).
+> - **Layer 4 (Kinetic Subtitles)**: Phụ đề Karaoke chữ to (`text-5xl` - `text-6xl font-black`), đặt tại `bottom: 180px` - `220px` (trên vùng cấm đáy của TikTok), highlight từ đang đọc màu vàng kim.
 
 > [!CRITICAL]
-> **Rule 2: LARGE CODE FONTS (`text-[22px]` to `text-[26px]`)**
-> Never use `text-xs` or `text-sm` for code blocks. On high-DPI mobile screens, small text is illegible. Always use `text-[22px]` or `text-[24px]` with `leading-[1.65]` and syntax highlighting.
+> **Rule 2: LARGE MOBILE FONTS & KEYWORDS ONLY**
+> Never use `text-xs` or `text-sm` for explanations. Titles must be `text-3xl` to `text-4xl font-black`, keywords `text-2xl font-bold`, code blocks `text-[22px]` to `text-[26px]`, stats `text-4xl` to `text-5xl`.
 
 > [!IMPORTANT]
-> **Rule 3: SAFE ZONES**
-> - Top: `BrandHeader` at `top: 140px` (clears platform search bars).
-> - Bottom: `SubtitleBox` at `bottom: 160px` (clears platform caption & audio disc).
-> - Center: Content placed between `pt-52` and `pb-48`.
+> **Rule 3: TIKTOK SAFE ZONES (1080x1920)**
+> - Top Danger Zone: `y = 0 ➔ 180px` (TikTok tabs, search). Chỉ để BrandHeader nhỏ.
+> - Right Danger Zone: `x = 940 ➔ 1080px` (Like, Comment, Share).
+> - Bottom Danger Zone: `y = 1460 ➔ 1920px` (Caption dài, audio disk, time bar).
+> - **VÙNG AN TOÀN VÀNG**: `x: 60 ➔ 920px`, `y: 200 ➔ 1440px` (Chứa toàn bộ Hero Visual, Badges và Subtitles).
 
 ---
 
