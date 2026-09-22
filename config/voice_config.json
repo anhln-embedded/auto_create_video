@@ -1,0 +1,28 @@
+{
+  "default_engine": "zerotts",
+  "zerotts": {
+    "default_voice": "quangminh",
+    "threads": 4,
+    "cfg_scale": 1.0,
+    "available_voices": [
+      { "id": "quangminh", "name": "Quang Minh", "gender": "male", "style": "Tech, energetic, crisp" },
+      { "id": "tiendat", "name": "Tiến Đạt", "gender": "male", "style": "Shorts, dramatic, hype" },
+      { "id": "maichi", "name": "Mai Chi", "gender": "female", "style": "Warm, storytelling" },
+      { "id": "baotrang", "name": "Bảo Trang", "gender": "female", "style": "Professional news" }
+    ]
+  },
+  "edge_tts": {
+    "default_voice": "vi-VN-NamMinhNeural",
+    "available_voices": [
+      { "id": "vi-VN-NamMinhNeural", "name": "Nam Minh", "gender": "male" },
+      { "id": "vi-VN-HoaiMyNeural", "name": "Hoài My", "gender": "female" }
+    ]
+  },
+  "video": {
+    "fps": 30,
+    "width": 1080,
+    "height": 1920,
+    "buffer_frames_per_scene": 3,
+    "outro_extra_frames": 10
+  }
+}

@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Production & Build outputs
+dist/
+out/
+build/
+.remotion/
+public/test-sample.png
+
+# Environment & credentials
+.env
+.env.local
+.env.*.local
+
+# Operating System
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Logs & Temporary files
+*.log
+scratch/
