@@ -131,3 +131,20 @@ Add your new composition into `src/Root.tsx`:
   ```bash
   npm run render -- --id "MyVideoTopic"
   ```
+
+---
+
+## 🧹 6. Quy Chuẩn Quản Lý File Tạm Khi AI Tạo Giao Diện (Workspace Cleanliness)
+
+Khi AI phát triển giao diện mới, render kiểm tra bố cục hoặc thử nghiệm âm thanh:
+
+1. **Mọi file ảnh chụp màn hình (preview/still) BẮT BUỘC lưu vào thư mục `tmp/` hoặc `public/tmp/`**:
+   - Khi chạy lệnh `npx remotion still`, luôn chỉ định đường dẫn lưu trong `tmp/`:
+     ```bash
+     npx remotion still src/index.ts MyVideoTopic tmp/preview-scene1.png --frame=60
+     ```
+   - **NGHIÊM CẤM** xuất file test trực tiếp ra thư mục gốc (`4.png`, `test.png`, `test-sample.png`).
+2. **File âm thanh thử nghiệm & kịch bản nháp**:
+   - Các file sinh thử (`test_voice.mp3`, `test.wav`) và file nháp phải đặt trong `tmp/` hoặc `scratch/`.
+3. **Đảm bảo tự động bỏ qua qua `.gitignore`**:
+   - Các thư mục `tmp/`, `temp/`, `scratch/`, `scripts/tmp/`, `public/tmp/`, `public/preview/`, cùng các định dạng `*.tmp`, `*.log`, `test_*.png`, `test-*.png` đã được cấu hình trong `.gitignore` để không làm bẩn git repository.

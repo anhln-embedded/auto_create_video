@@ -6,7 +6,22 @@ dist/
 out/
 build/
 .remotion/
+
+# Temporary files, scratch, and UI preview outputs (AI generated)
+tmp/
+temp/
+scratch/
+scripts/tmp/
+public/tmp/
+public/preview/
 public/test-sample.png
+*.tmp
+*.png.tmp
+*.log
+test_*.mp3
+test_*.png
+test-*.png
+*.wav
 
 # Environment & credentials
 .env
@@ -17,7 +32,3 @@ public/test-sample.png
 .DS_Store
 Thumbs.db
 desktop.ini
-
-# Logs & Temporary files
-*.log
-scratch/
